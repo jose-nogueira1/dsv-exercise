@@ -1,24 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useReducer, useState } from "react";
+import { Button, TextField } from "@mui/material";
+import "./styles.css";
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "increment":
+      return { count: state.count + 1 };
+    case "decrement":
+      return { count: state.count - 1 };
+    default:
+      throw new Error();
+  }
+}
 
 function App() {
+  const [users] = useState([]);
+  const [numberInput] = useState(0);
+  const [text] = useState("");
+  const [countState, dispatch] = useReducer(reducer, { count: 0 });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p style={{ marginBottom: 0 }}>Count: {countState.count}</p>
+      <TextField
+        defaultValue={numberInput}
+        type="number"
+        style={{ display: "block" }}
+      />
+      <Button
+        variant="contained"
+        onClick={() => dispatch({ type: "decrement" })}
+      >
+        -
+      </Button>
+      <Button
+        variant="contained"
+        onClick={() => dispatch({ type: "increment" })}
+      >
+        +
+      </Button>
+      <p style={{ marginBottom: 0, marginTop: 30 }}>Search for a user</p>
+      <TextField
+        defaultValue={text}
+        style={{ display: "block", margin: "auto" }}
+      />
     </div>
   );
 }
