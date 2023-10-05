@@ -170,6 +170,12 @@ function App() {
     dispatch({ type: "SET_SEARCH_TEXT", payload: searchText });
   };
 
+  // Handle input change and update numberInput state
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = event.target.value;
+    setNumberInput(parseInt(inputValue));
+  };
+
   // Filter the users based on the search text
   const filteredUsers = state.users.filter((user) =>
     user.username.toLowerCase().includes(state.searchText)
@@ -191,8 +197,9 @@ function App() {
         Increment Nearest Odd
       </Button>
       <TextField
-        defaultValue={numberInput}
+        value={numberInput.toString()}
         type="number"
+        onChange={handleInputChange}
         style={{ display: "block" }}
       />
       <Button
