@@ -242,6 +242,24 @@ function App() {
           </CardContent>
         </Card>
       ))}
+      {state.removedUsers.map((user) => (
+        <Card key={user.id} style={{ marginTop: 20 }}>
+          <CardContent>
+            <Typography variant="h6">{user.username}</Typography>
+            <Typography>{user.address.street}</Typography>
+            <Typography>{user.age}</Typography>
+            <Typography>{user.companyName}</Typography>
+            <Button
+              variant="outlined"
+              onClick={() =>
+                dispatch({ type: "RESTORE_USER", payload: user.id })
+              }
+            >
+              Restore
+            </Button>
+          </CardContent>
+        </Card>
+      ))}
     </div>
   );
 }
