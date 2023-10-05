@@ -213,7 +213,7 @@ function App() {
       <p style={{ marginBottom: 0, marginTop: 30 }}>Search for a user</p>
       <TextField
         onChange={handleSearchChange}
-        value={state.searchText} // Use searchText from the state
+        value={state.searchText}
         style={{ display: "block", margin: "auto" }}
       />
       {/* Render the filtered users */}
